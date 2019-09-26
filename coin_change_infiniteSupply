@@ -1,0 +1,50 @@
+// ConsoleApplication6.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// the below code is to find number of ways you can make for a given sum using dynamic programming.
+the algorithm is as below:
+construct 2D Array with number as row and sum as coloumn , column sum will start form 0 to n(actual sum).
+start construcitng the 2D array and then reuturn the last element in the array.
+//
+#include "pch.h"
+#include <iostream>
+
+// C program for different tree traversals 
+#include <iostream> 
+using namespace std;
+
+
+
+int count(int S[], int m, int n)
+{
+	int i, j, x, y;
+	int num[4][5] = {0};
+
+	for (i = 0; i < n; i++)
+		num[0][i] = 0;
+
+	num[0][0] = 1;
+
+	for (i = 1; i <= m; i++)
+	{
+		for (j = 0; j <= n; j++)
+		{
+		    if (i > j)
+			   num[i][j] = num[i-1][j];
+		    else
+					num[i][j] = num[i-1][j] + num[i][j-i];
+		}
+	}
+
+	return num[m][n];
+
+	
+}
+
+// Driver program to test above function 
+int main()
+{
+	int arr[] = { 1, 2, 3 };
+	int m = sizeof(arr) / sizeof(arr[0]);
+	int n = 4;
+	printf(" %d ", count(arr, m, n));
+	return 0;
+}
